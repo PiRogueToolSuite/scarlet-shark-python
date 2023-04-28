@@ -8,7 +8,7 @@ API_CLIENTS = {
 
 class ClientFactory:
     @staticmethod
-    def get_client(api_key: str, api_version: str = 'v0.4') -> ScarletSharkClient:
+    def get_client(api_key: str, api_version: str = 'v0.4', print_json=False) -> ScarletSharkClient:
         if api_version not in API_CLIENTS:
             raise Exception(f'No Scarlet Shark client is available for the given version {api_version}')
-        return API_CLIENTS[api_version](api_key)
+        return API_CLIENTS[api_version](api_key, print_json)

@@ -1,14 +1,51 @@
 from abc import ABC, abstractmethod
 from typing import Optional
+from urllib.parse import urlencode
+
+import requests
 
 
 class ScarletSharkClient(ABC):
     version: str
+    api_actions: dict = {}
     api_key: str
+    print_json = False
 
     def __init__(
-            self, api_key: str):
+            self, api_key: str, print_json: bool = False):
         self.api_key = api_key
+        self.print_json = print_json
+
+    def _resolve_url(self, action_name: str, params) -> str:
+        if action_name not in self.api_actions:
+            raise Exception(f'The action [{action_name}] is not supported')
+        query_parameters: dict = {}
+        for k, v in params.items():
+            if k != 'self' and v:
+                query_parameters[k] = v
+        if not query_parameters:
+            raise Exception(f'At least query parameter has to be specified in [{params}]')
+        endpoint = self.api_actions[action_name]
+        query_string = urlencode(query_parameters)
+        return f'{self.version}{endpoint}?{query_string}'
+
+    def _prepare_request(self, uri: str):
+        headers = {
+            'Authorization': f'Bearer {self.api_key}'
+        }
+        base_url = 'https://api.scarletshark.com/'
+        url = f'{base_url}{uri}'
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            r = response.json()
+            if int(r.get('result_code', -1)) < 0:
+                raise Exception(r.get('result').get('message'))
+            result = r.get('result')
+            if self.print_json:
+                import json
+                print(json.dumps(result, indent=2, sort_keys=True))
+            return result
+        return None
 
     @abstractmethod
     def search_dns(
