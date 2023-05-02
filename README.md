@@ -1,6 +1,11 @@
 # scarlet-shark-python
 Scarlet Shark REST API Python client.
 
+## Installation
+```
+pip install scarlet-shark-python
+```
+
 ## Usage example
 ```python
 from scarlet_shark_python.client import ClientFactory
