@@ -12,3 +12,7 @@ class ClientFactory:
         if api_version not in API_CLIENTS:
             raise Exception(f'No Scarlet Shark client is available for the given version {api_version}')
         return API_CLIENTS[api_version](api_key, print_json)
+
+    @staticmethod
+    def get_supported_versions():
+        return list(API_CLIENTS.keys())
