@@ -9,14 +9,19 @@ if sys.version_info.major == 3 and sys.version_info.minor < 3:
     print('Unfortunately, your python version is not supported!\n Please upgrade at least to python 3.3!')
     sys.exit(1)
 
+# read the contents of your README file
+from pathlib import Path
+pwd = Path(__file__).parent
+long_description = (pwd / "README.md").read_text()
+
 install_requires = [
     'requests==2.29.0'
 ]
 
 setup(name='scarlet-shark-python',
-      version='1.0.1',
+      version='1.0.2',
       description='Scarlet Shark REST API Python client',
-      long_description='file: README.md',
+      long_description=long_description,
       long_description_content_type='text/markdown',
       author='U+039b',
       author_email='esther@pts-project.org',
