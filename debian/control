@@ -1,4 +1,4 @@
-Source: python3-scarletshark-client
+Source: python3-scarlet-shark-client
 Section: misc
 Priority: optional
 Maintainer: U+039b <hello@pts-project.org>
@@ -11,7 +11,7 @@ Build-Depends:
 Standards-Version: 4.5.1
 Homepage: https://github.com/PiRogueToolSuite/scarlet-shark-python
 
-Package: python3-scarletshark-client
+Package: python3-scarlet-shark-client
 Architecture: all
 Depends: ${misc:Depends},
  ${python3:Depends},

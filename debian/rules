@@ -1,6 +1,6 @@
 #! /usr/bin/make -f
 
-export PYBUILD_NAME=scarlet-shark-python
+export PYBUILD_NAME=scarlet-shark-client
 %:
 	dh $@ --with quilt,python3 --buildsystem=pybuild
 
@@ -10,4 +10,4 @@ override_dh_builddeb:
 # Shipped in the tarball, modified after a build:
 override_dh_clean:
 	dh_clean
-	rm -rf scarlet_shark_python.egg-info/
+	rm -rf scarlet_shark_client.egg-info/

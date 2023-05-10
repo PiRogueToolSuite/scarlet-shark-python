@@ -1,5 +1,5 @@
-from scarlet_shark_python.clients.v04_client import ScarletSharkClient as V04ScarletSharkClient
-from scarlet_shark_python.clients.abstract import ScarletSharkClient
+from scarlet_shark_client.clients.v04_client import ScarletSharkClient as V04ScarletSharkClient
+from scarlet_shark_client.clients.abstract import ScarletSharkClient
 
 API_CLIENTS = {
     'v0.4': V04ScarletSharkClient,

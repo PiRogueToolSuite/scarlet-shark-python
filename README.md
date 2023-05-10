@@ -3,12 +3,13 @@ Scarlet Shark REST API Python client.
 
 ## Installation
 ```
-pip install scarlet-shark-python
+pip install scarlet-shark-client
 ```
 
 ## Usage example
+
 ```python
-from scarlet_shark_python.client import ClientFactory
+from scarlet_shark_client.client import ClientFactory
 
 client = ClientFactory.get_client('<your API key>', api_version='v0.4', print_json=True)
 result = client.search_domain(domain='scarletshark.com')

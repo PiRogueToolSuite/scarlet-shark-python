@@ -1,7 +1,7 @@
 import sys
 from typing import Optional
 
-from scarlet_shark_python.clients.abstract import ScarletSharkClient as AbstractClient
+from scarlet_shark_client.clients.abstract import ScarletSharkClient as AbstractClient
 
 
 class ScarletSharkClient(AbstractClient):
