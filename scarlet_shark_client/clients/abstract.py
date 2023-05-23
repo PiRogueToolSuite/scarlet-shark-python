@@ -22,7 +22,14 @@ class ScarletSharkClient(ABC):
         query_parameters: dict = {}
         for k, v in params.items():
             if k != 'self' and v:
-                query_parameters[k] = v
+                key = k
+                if k == 'ip' and action_name == 'search_ip':
+                    key = 'ips[]'
+                elif k == 'email' and action_name == 'search_email':
+                    key = 'emails[]'
+                elif k == 'url' and action_name == 'search_url':
+                    key = 'urls[]'
+                query_parameters[key] = v
         if not query_parameters:
             raise Exception(f'At least query parameter has to be specified in [{params}]')
         endpoint = self.api_actions[action_name]
@@ -78,11 +85,11 @@ class ScarletSharkClient(ABC):
     @abstractmethod
     def search_email(
             self,
-            emails: list[str],
+            email: str,
             nonce: Optional[int] = None) -> Optional[dict]:
         """
         Returns threat information for the given email addresses.
-        :param emails: String Array - Email addresses to search for threat data on
+        :param email: String - Email address to search for threat data on
         :param nonce: Integer [optional] - A nonce that is returned, if provided in the request
         :return: Returns threat information for the given email addresses.
         """
@@ -106,14 +113,14 @@ class ScarletSharkClient(ABC):
     @abstractmethod
     def search_ip(
             self,
-            ips: list[str],
+            ip: str,
             context: Optional[str] = None,
             time_period: Optional[int] = None,
             time_zone: Optional[str] = None,
             nonce: Optional[int] = None) -> Optional[dict]:
         """
         Looks up information for an IP and any threat intel information about that IP.
-        :param ips: String array - v4 or v6 IP address
+        :param ip: String - v4 or v6 IP address
         :param context: String [optional] – Possible values: [user_activity, none] - The context of the IP look up. This helps give a more accurate threat classification.
         :param time_period: Integer - The number of days to show security issues for.
         :param time_zone: String [optional] - PHP Time Zone Strings. Results will be returned in the given time zone. UTC is the default. See: https://www.php.net/manual/en/timezones.php
@@ -170,12 +177,12 @@ class ScarletSharkClient(ABC):
     @abstractmethod
     def search_url(
             self,
-            urls: list[str],
+            url: str,
             nonce: Optional[int] = None) -> Optional[dict]:
         """
-        Looks up threat information for the given URLs.
-        :param urls: String Array - URLs to search for threat data on. The domain of each URL will automatically be changed from Unicode to an IDNA ASCII-compatible format
+        Looks up threat information for the given URL.
+        :param url: String - URL to search for threat data on.
         :param nonce: Integer [optional] - A nonce that is returned, if provided in the request
-        :return: Looks up threat information for the given URLs
+        :return: Looks up threat information for the given URL
         """
         pass

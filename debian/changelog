@@ -1,3 +1,9 @@
+python3-scarlet-shark-client (1.0.5) UNRELEASED; urgency=medium
+
+  * Fix URL encoding of array parameters
+
+ -- U+039b <hello@pts-project.org>  Tue, 23 May 2023 11:16:56 +0200
+
 python3-scarlet-shark-client (1.0.4) unstable; urgency=medium
 
   * Initial release.

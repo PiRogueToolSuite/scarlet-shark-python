@@ -35,7 +35,7 @@ class ScarletSharkClient(AbstractClient):
 
     def search_email(
             self,
-            emails: list[str],
+            email: str,
             nonce: Optional[int] = None) -> Optional[dict]:
         uri = self._resolve_url(sys._getframe().f_code.co_name, locals())
         return self._prepare_request(uri)
@@ -50,7 +50,7 @@ class ScarletSharkClient(AbstractClient):
 
     def search_ip(
             self,
-            ips: list[str],
+            ip: str,
             context: Optional[str] = None,
             time_period: Optional[int] = None,
             time_zone: Optional[str] = None,
@@ -84,7 +84,7 @@ class ScarletSharkClient(AbstractClient):
 
     def search_url(
             self,
-            urls: list[str],
+            url: str,
             nonce: Optional[int] = None) -> Optional[dict]:
         uri = self._resolve_url(sys._getframe().f_code.co_name, locals())
         return self._prepare_request(uri)

@@ -20,7 +20,7 @@ install_requires = [
 
 setup(
     name='scarlet-shark-client',
-    version='1.0.4',
+    version='1.0.5',
     description='Scarlet Shark REST API Python client',
     long_description=long_description,
     long_description_content_type='text/markdown',
